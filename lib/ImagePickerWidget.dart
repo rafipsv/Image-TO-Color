@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, file_names, library_private_types_in_public_api, unnecessary_brace_in_string_interps, avoid_print
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -10,6 +11,8 @@ import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart' show rootBundle;
 
 class ColorPickerWidget extends StatefulWidget {
+  final File image;
+  const ColorPickerWidget({this.image});
   @override
   _ColorPickerWidgetState createState() => _ColorPickerWidgetState();
 }
@@ -57,14 +60,14 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                       searchPixel(details.globalPosition);
                     },
                     child: Center(
-                      child: Image.asset(
-                        imagePath,
+                      child: Image.file(
+                        widget.image,
                         key: imageKey,
-                        //color: Colors.red,
-                        //colorBlendMode: BlendMode.hue,
-                        //alignment: Alignment.bottomRight,
-                        fit: BoxFit.none,
-                        //scale: .8,
+                        // //color: Colors.red,
+                        // //colorBlendMode: BlendMode.hue,
+                        // //alignment: Alignment.bottomRight,
+                        fit: BoxFit.cover,
+                        // //scale: .8,
                       ),
                     ),
                   ),
